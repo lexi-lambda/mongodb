@@ -74,8 +74,9 @@
 (define type-tag-size 1)
 
 (define-mappings (binary-byte->tag tag->binary-byte)
+  [(#x00) 'binary]
   [(#x01) 'function]
-  [(#x02) 'binary]
+  [(#x02) 'binary-old]
   [(#x03) 'uuid]
   [(#x05) 'md5]
   [(#x80) 'user-defined])

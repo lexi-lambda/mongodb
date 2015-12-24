@@ -42,6 +42,8 @@
   (define subtype (hash-ref binary-byte->tag subtype-b))
   (case subtype
     [(binary)
+     (read-bytes array-size p)]
+    [(binary-old)
      (let ([bytes-size (read-int32 p)])
        (read-bytes bytes-size p))]
     [else

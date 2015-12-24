@@ -92,9 +92,7 @@
 (define prepare-binary
   (match-lambda
     [(struct bson-binary (t bs))
-     (define byte-array-size
-       (+ (if (symbol=? t 'bytes) int32-size 0)
-          (bytes-length bs)))
+     (define byte-array-size (bytes-length bs))
      (define total-size
        (+ int32-size 1 byte-array-size))
      (define rt
@@ -104,8 +102,6 @@
              (lambda (p)
                (write-int32 p byte-array-size)
                (write-byte (hash-ref tag->binary-byte rt) p)
-               (when (symbol=? t 'bytes)
-                 (write-int32 p (bytes-length bs)))
                (write-bytes bs p)))]))
 
 (define (prepare-oid o)
